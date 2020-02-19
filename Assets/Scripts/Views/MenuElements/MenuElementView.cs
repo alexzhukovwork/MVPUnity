@@ -2,28 +2,25 @@
 using Assets.Scripts.Prefabs;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Assets.Scripts.Views.MenuElements
 {
-    public abstract class MenuElementView : MonoBehaviour, IMenuElementView
+    public class MenuElementView : MonoBehaviour, IMenuElementView
     {
         [SerializeField] protected Button _Button;
         [SerializeField] protected GameObject _Highlight;
-        [SerializeField] protected GameObject _GameView;
         
+        [Inject]
+        private IGameView GameView { get; set; }
+
         public GameObject GameObject => gameObject;
 
         public Action OnClick { get; set; }
 
-        public GameObject IGameView => _GameView;
-
-        private void Awake()
+        private void Start()
         {
             _Button.onClick.AddListener(OnClickListener);
-
-            _GameView = Instantiate(_GameView, GetComponentInParent<Canvas>().transform);
-
-            _GameView.SetActive(false);
         }
 
         protected void OnClickListener()
@@ -35,14 +32,22 @@ namespace Assets.Scripts.Views.MenuElements
         {
             _Highlight.SetActive(true);
 
-            _GameView.SetActive(true);
+            GameView?.GamePresenter.SetGameView(GameView);
+
+            GameView?.GameObject.SetActive(true);
         }
 
         public void Unselect()
         {
             _Highlight.SetActive(false);
 
-            _GameView.SetActive(false);
+            GameView?.GameObject.SetActive(false);
+        }
+
+        public void Initialize()
+        {
+            GameView.GameObject.transform.SetParent(GetComponentInParent<Canvas>().transform);
+            GameView.GameObject.SetActive(false);
         }
     }
 }

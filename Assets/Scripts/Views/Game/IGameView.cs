@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IGameView
 {
+    IGamePresenter GamePresenter { get; set; }
+
     GameObject GameObject { get; }
 }

@@ -21,7 +21,7 @@ namespace Assets.Scripts.Views
             _Transform = transform;
         }
 
-        private void Awake()
+        private void Start()
         {
             MenuPresenter.SetMenuView(this);
         }
@@ -32,11 +32,11 @@ namespace Assets.Scripts.Views
 
             for (int i = 0; i < menuViews.Length; i++)
             {
-                GameObject gO = Instantiate(menuViews[i].GameObject, _Transform);
-
-                MenuElementViews[i] = gO.GetComponent<IMenuElementView>();
+                MenuElementViews[i] = menuViews[i];
                 
                 int temp = i;
+
+                MenuElementViews[i].GameObject.transform.SetParent(transform);
 
                 MenuElementViews[i].OnClick += () => MenuPresenter.OnClick(temp);
             }
