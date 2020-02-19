@@ -34,12 +34,9 @@ _ReSharper*/
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
-/[Ss]cenes/[Tt]est/
 /Assets/AssetStoreTools*
 sysinfo.txt
 *.pidb.meta
-
-/Assets/Enhanced Hierarchy/
 
 # VS/Rider/MD/Consulo
 ExportedObj/
@@ -56,18 +53,14 @@ ExportedObj/
 
 # Builds
 *.apk
+*.unitypackage
 *.app
-/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+/Assets/Dices/Scripts/MyTest.meta
 /lfs.bat
 Assets/Scenes/Test.unity.meta
 Assets/Scenes/Test.unity
-*.diff
-Assets/Enhanced Hierarchy.meta
-Assets/ConsolePro/
-Assets/ConsolePro.meta
-.vs/NCSClient/v16/Server/sqlite3/storage.ide-wal
-.vs/NCSClient/v16/Server/sqlite3/storage.ide-shm
-.vs/NCSClient/v16/Server/sqlite3/storage.ide
-.vs/NCSClient/v16/Server/sqlite3/db.lock
-.vs/Loto/v16/Server/sqlite3/storage.ide
-.vs/Loto/v16/Server/sqlite3/db.lock
+Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+.vs/MVPUnity/v16/Server/sqlite3/storage.ide-wal
+.vs/MVPUnity/v16/Server/sqlite3/storage.ide-shm
+.vs/MVPUnity/v16/Server/sqlite3/storage.ide
+.vs/MVPUnity/v16/Server/sqlite3/db.lock
