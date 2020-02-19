@@ -24,10 +24,11 @@ namespace Assets.Scripts
             InitMenuElementViews(menuPrefabs);
 
             Container.Bind<IMenuModel>().To<MenuModel>().AsSingle().WithArguments(menuPrefabs);
+            Container.Bind<IMenuElementModel>().To<MenuElementModel>().AsSingle().WithArguments(gameViews);
+            Container.Bind<IMenuElementPresenter>().To<MenuElementPresenter>().AsSingle().Lazy();
+
             Container.Bind<IMenuPresenter>().To<MenuPresenter>().AsSingle();
             Container.Bind<IGamePresenter>().To<GamePresenter>().AsSingle();
-            Container.Bind<IGameView>().FromInstance(gameViews[0]).AsSingle().NonLazy();
-
         }
 
         private void InitMenuElementViews(IMenuElementView[] menuPrefabs)

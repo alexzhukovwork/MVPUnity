@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Prefabs;
+using Assets.Scripts.Presenters;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,10 +9,15 @@ namespace Assets.Scripts.Views.MenuElements
 {
     public class MenuElementView : MonoBehaviour, IMenuElementView
     {
-        [SerializeField] protected Button _Button;
-        [SerializeField] protected GameObject _Highlight;
-        
+        [SerializeField] 
+        protected Button _Button;
+
+        [SerializeField] 
+        protected GameObject _Highlight;
+
         [Inject]
+        private IMenuElementPresenter MenuElementPresenter { get; set; }
+
         private IGameView GameView { get; set; }
 
         public GameObject GameObject => gameObject;
