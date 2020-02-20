@@ -15,20 +15,24 @@ namespace Assets.Scripts
 
         public override void InstallBindings()
         {
+            Container.Bind<IGamePresenter>().To<GamePresenter>().AsSingle();
+
             IGameView[] gameViews = new IGameView[GamePrefabs.Length];
 
             InitGameViews(gameViews);
+            
+            Container.Bind<IMenuElementModel>().To<MenuElementModel>().AsSingle();
+            Container.BindInstance(gameViews);
+            Container.Bind<IMenuElementPresenter>().To<MenuElementPresenter>().AsSingle();
 
             IMenuElementView[] menuPrefabs = new IMenuElementView[MenuPrefabs.Length];
 
             InitMenuElementViews(menuPrefabs);
 
-            Container.Bind<IMenuModel>().To<MenuModel>().AsSingle().WithArguments(menuPrefabs);
-            Container.Bind<IMenuElementModel>().To<MenuElementModel>().AsSingle().WithArguments(gameViews);
-            Container.Bind<IMenuElementPresenter>().To<MenuElementPresenter>().AsSingle().Lazy();
+            Container.Bind<IMenuModel>().To<MenuModel>().AsSingle();
+            Container.BindInstance(menuPrefabs);
 
             Container.Bind<IMenuPresenter>().To<MenuPresenter>().AsSingle();
-            Container.Bind<IGamePresenter>().To<GamePresenter>().AsSingle();
         }
 
         private void InitMenuElementViews(IMenuElementView[] menuPrefabs)
@@ -46,7 +50,7 @@ namespace Assets.Scripts
         {
             for (int i = 0; i < gameViews.Length; i++)
             {
-                GameObject gameObject = Container.InstantiatePrefab(GamePrefabs[i]);
+                GameObject gameObject = Container.InstantiatePrefab(GamePrefabs[i], FindObjectOfType<Canvas>().transform);
 
                 gameViews[i] = gameObject.GetComponent<IGameView>();
             }

@@ -16,7 +16,12 @@ namespace Assets.Scripts.Views.MenuElements
         protected GameObject _Highlight;
 
         [Inject]
-        private IMenuElementPresenter MenuElementPresenter { get; set; }
+        private IMenuElementPresenter Presenter { get; set; }
+
+        private static int _number;
+
+        private int _index;
+
 
         private IGameView GameView { get; set; }
 
@@ -38,22 +43,21 @@ namespace Assets.Scripts.Views.MenuElements
         {
             _Highlight.SetActive(true);
 
-            GameView?.GamePresenter.SetGameView(GameView);
-
-            GameView?.GameObject.SetActive(true);
+            GameView.Select();
         }
 
         public void Unselect()
         {
             _Highlight.SetActive(false);
 
-            GameView?.GameObject.SetActive(false);
+            GameView.Unselect();
         }
 
-        public void Initialize()
+        [Inject]
+        public void SetGameView(IGameView[] gameView)
         {
-            GameView.GameObject.transform.SetParent(GetComponentInParent<Canvas>().transform);
-            GameView.GameObject.SetActive(false);
+            GameView = gameView[_number++];
+            GameView.Select();
         }
     }
 }

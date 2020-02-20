@@ -27,6 +27,7 @@ namespace Assets.Scripts.Views
             MenuPresenter.SetMenuView(this);
         }
 
+        [Inject]
         public void SetMenuGames(IMenuElementView[] menuViews)
         {
             MenuElementViews = new IMenuElementView[menuViews.Length];

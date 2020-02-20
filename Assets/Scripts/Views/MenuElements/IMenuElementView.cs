@@ -9,5 +9,6 @@ namespace Assets.Scripts.Prefabs
         Action OnClick { get; set; }
         void Select();
         void Unselect();
+        void SetGameView(IGameView[] gameView);
     }
 }

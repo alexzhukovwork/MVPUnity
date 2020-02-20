@@ -14,16 +14,13 @@ namespace Assets.Scripts.Presenters
         public void SetMenuView(IMenuView menuView)
         {
             MenuView = menuView;
-            MenuView.SetMenuGames(MenuModel.MenuPrefabs);
 
             MenuView.SelectElement(0);
-            MenuModel.SetCurrentElement(0);
         }
 
         public void OnClick(int index)
         {
-            MenuModel.SetCurrentElement(index);
-            MenuView.SelectElement(index);
+            MenuView.SelectElement(index);    
         }
 
         public MenuPresenter(IMenuModel menuModel)

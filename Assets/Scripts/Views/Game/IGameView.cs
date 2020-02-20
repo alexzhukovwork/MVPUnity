@@ -7,4 +7,7 @@ public interface IGameView
     IGamePresenter GamePresenter { get; set; }
 
     GameObject GameObject { get; }
+
+    void Select();
+    void Unselect();
 }

@@ -9,6 +9,18 @@ namespace Assets.Scripts.Views.Game
     {
         public GameObject GameObject => gameObject;
     
+        [Inject]
         public IGamePresenter GamePresenter { get; set; }
+
+        public void Select()
+        {
+            GameObject.SetActive(true);
+            GamePresenter.GameView = this;
+        }
+
+        public void Unselect()
+        {
+            GameObject.SetActive(false);
+        }
     }
 }
