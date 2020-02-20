@@ -9,18 +9,10 @@ namespace Assets.Scripts.Views
 {
     public class MenuView : MonoBehaviour, IMenuView
     {
-        [SerializeField] 
-        private Transform _Transform;
-
         [Inject]
         private IMenuPresenter MenuPresenter { get; set; }
 
         public IMenuElementView[] MenuElementViews { get; set; }
-
-        private void Reset()
-        {
-            _Transform = transform;
-        }
 
         private void Start()
         {

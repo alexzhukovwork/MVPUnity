@@ -2,5 +2,5 @@
 {
     IGameView GameView { get; set; }
 
-    void SetGameView(IGameView gameView);
+    void SelectGame(IGameView gameView);
 }

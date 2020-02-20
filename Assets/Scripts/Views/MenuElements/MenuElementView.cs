@@ -15,13 +15,7 @@ namespace Assets.Scripts.Views.MenuElements
         [SerializeField] 
         protected GameObject _Highlight;
 
-        [Inject]
-        private IMenuElementPresenter Presenter { get; set; }
-
         private static int _number;
-
-        private int _index;
-
 
         private IGameView GameView { get; set; }
 
