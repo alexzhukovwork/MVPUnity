@@ -1916,7 +1916,7 @@ namespace Zenject
         public object Instantiate(Type concreteType)
         {
             return Instantiate(concreteType, new object[0]);
-        }
+            }
 
         // Note: For IL2CPP platforms make sure to use new object[] instead of new [] when creating
         // the argument list to avoid errors converting to IEnumerable<object>

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Models.Games;
+using Assets.Scripts.Views.Game.BetView;
+using Assets.Scripts.Views.Game.ResultView;
 using UnityEngine;
 using Zenject;
 
@@ -8,22 +10,24 @@ namespace Assets.Scripts.Views.Game
 {
     public class GameView : MonoBehaviour, IGameView
     {
-        [SerializeField] private GameObject[] _Results;
         [SerializeField] private Models.Games.Games _GameId;
+     
+        private IResultsView _resultsView;
+        private IBetsView _betsView;
 
         public GameObject GameObject => gameObject;
+
+        public IBetsView BetsView { get => _betsView; }
 
         [Inject]
         public IGamePresenter GamePresenter { get; set; }
 
-        public Models.Games.Games GameId => _GameId;
+        public Games GameId => _GameId;
 
-        public void SetResultCount(int count)
+        private void Awake()
         {
-
-            for (int i = 0; i < count && i < _Results.Length; i++) {
-                _Results[i].SetActive(true);
-            }
+            _resultsView = GetComponentInChildren<IResultsView>();
+            _betsView = GetComponentInChildren<IBetsView>();
         }
 
         public void Select()
@@ -32,10 +36,14 @@ namespace Assets.Scripts.Views.Game
             GamePresenter.SelectGame(this);
         }
 
-
         public void Unselect()
         {
             GameObject.SetActive(false);
+        }
+
+        public void SetResults(int[] results)
+        {
+            _resultsView.SetResults(results);
         }
     }
 }
